@@ -1,27 +1,40 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button href='/home'>voltar</ion-button>
+    </ion-buttons>
     <ion-title>Informações</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-card>
-    <img
-      src="http://www.marajoaraalimentos.com.br/2018/wp-content/themes/marajoara2018/img/banner-home-contatos-mobile.jpg">
+  <ion-item>
+    <ion-avatar slot="start">
+      <img src="https://yt3.ggpht.com/a/AGF-l790ZGzS4Qw4FWGGEp6MQHqbWjxxvVeJhF7_sA=s900-mo-c-c0xffffffff-rj-k-no"
+        alt="">
+    </ion-avatar>
     <ion-label>
-      <ion-card-header>
-        <ion-card-title>ID: {{id}}</ion-card-title>
-      </ion-card-header>
+      <h2>ID: {{id}}</h2>
+      <p>Deixa a vida me levar...</p>
     </ion-label>
+  </ion-item>
+
+  <ion-list>
 
     <ion-item>
-      <ion-icon name="thumbs-up" slot="start"></ion-icon>
-      <ion-badge>14</ion-badge>
-      <ion-icon name="thumbs-down" slot="end"></ion-icon>
-      <ion-badge slot="end">20</ion-badge>
+      Oi sumido...
     </ion-item>
 
-  </ion-card>
+    <ion-item>
+      Opa...
+    </ion-item>
+
+    <ion-item class="item-border">
+      <ion-input placeholder="Nova Mensagem"></ion-input>
+      <ion-icon name="arrow-dropright-circle"></ion-icon>
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>

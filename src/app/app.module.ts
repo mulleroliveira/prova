@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContatoModalPageModule } from './contato-modal/contato-modal.module';
 import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera/ngx'; // Passo 1 - Câmera
+
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
   ],
   providers: [
+    Camera, // Passo 2 - Câmera
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

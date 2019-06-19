@@ -10,14 +10,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContatoModalPageModule } from './contato-modal/contato-modal.module';
 import { IonicStorageModule } from '@ionic/storage';
-import { Camera } from '@ionic-native/camera/ngx'; // Passo 1 - Câmera
-
+import { Camera } from '@ionic-native/camera/ngx';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     ContatoModalPageModule,
@@ -25,7 +26,7 @@ import { Camera } from '@ionic-native/camera/ngx'; // Passo 1 - Câmera
 
   ],
   providers: [
-    Camera, // Passo 2 - Câmera
+    Camera,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ContatoModalPage } from '../contato-modal/contato-modal.page';
 import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -10,23 +11,32 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage {
 
-  constructor(public modalController: ModalController, private storage: Storage) {
-    this.storage.get('contato').then((contato) => {
-      if (contato) {
-        this.contatos = contato
+  contatos: any;
+
+  constructor(public modalController: ModalController, private storage: Storage, private http: HttpClient) {
+    this.contatos = [];
+    this.http.get("http://5d0ab6c4c5896f0014e86dcb.mockapi.io/contact").subscribe(
+      (data) => {
+        this.contatos = data;
       }
-    })
+    );
   }
 
   add(contato) {
-    this.contatos.push(contato)
-    this.storage.set('contato', this.contatos)
+    this.http.post("http://5d0ab6c4c5896f0014e86dcb.mockapi.io/contact", contato).subscribe(
+      (data) => {
+        this.contatos.push(data)
+      }
+    )
   }
 
   remove(contato) {
-    var i = this.contatos.indexOf(contato);
-    this.contatos.splice(i, 1);
-    this.storage.set('contato', this.contatos)
+    this.http.delete("http://5d0ab6c4c5896f0014e86dcb.mockapi.io/contact/" + contato.id).subscribe(
+      (data) => {
+        var i = this.contatos.indexOf(contato)
+        this.contatos.splice(i, 1)
+      }
+    )
   }
 
   async modal() {
@@ -40,6 +50,5 @@ export class HomePage {
     })
   }
 
-  contatos = []
 
 }

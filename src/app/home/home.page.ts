@@ -3,6 +3,9 @@ import { ModalController } from '@ionic/angular';
 import { ContatoModalPage } from '../contato-modal/contato-modal.page';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
+import { LoadingController } from '@ionic/angular';
+import { load } from '@angular/core/src/render3';
+
 
 @Component({
   selector: 'app-home',
@@ -13,13 +16,20 @@ export class HomePage {
 
   contatos: any;
 
-  constructor(public modalController: ModalController, private storage: Storage, private http: HttpClient) {
+  constructor(public modalController: ModalController, private storage: Storage, private http: HttpClient, public loadingController: LoadingController) {
     this.contatos = [];
-    this.http.get("http://5d0ab6c4c5896f0014e86dcb.mockapi.io/contact").subscribe(
-      (data) => {
-        this.contatos = data;
-      }
-    );
+
+    this.loadingController.create({
+      message: 'Show'
+    }).then((loader) => {
+      loader.present()
+      this.http.get("http://5d0ab6c4c5896f0014e86dcb.mockapi.io/contact").subscribe(
+        (data) => {
+          this.contatos = data;
+          loader.dismiss()
+        }
+      );
+    });
   }
 
   add(contato) {
